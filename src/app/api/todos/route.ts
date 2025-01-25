@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
-  const take = Number(searchParams.get("take")) ?? 10;
-  const skip = Number(searchParams.get("skip")) ?? 0;
+  const take = Number(searchParams.get("take") ?? 10);
+  const skip = Number(searchParams.get("skip") ?? 0);
   if (isNaN(take) || isNaN(skip))
     return NextResponse.json(
       { message: "Take or skip need to be a number" },
@@ -15,4 +15,10 @@ export async function GET(request: NextRequest) {
     skip: skip,
   });
   return NextResponse.json(todos);
+}
+
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+  const todo = await prisma.todo.create({ data: body });
+  return NextResponse.json(todo);
 }
