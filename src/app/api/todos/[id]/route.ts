@@ -10,22 +10,22 @@ interface Segments {
 }
 
 const getTodo = async (id: string): Promise<Todo | null> => {
-  const todo = await prisma.todo.findFirst({
-    where: { id },
-  });
+  const todo = await prisma.todo.findFirst({ where: { id } });
+
   return todo;
 };
 
 export async function GET(request: Request, { params }: Segments) {
-  const todoById = await getTodo(params.id);
+  const todo = await getTodo(params.id);
 
-  if (!todoById) {
+  if (!todo) {
     return NextResponse.json(
-      { message: `Not todo ${params.id} found by that id` },
+      { message: `Todo con id ${params.id} no exite` },
       { status: 404 }
     );
   }
-  return NextResponse.json(todoById);
+
+  return NextResponse.json(todo);
 }
 
 const putSchema = yup.object({
@@ -34,11 +34,11 @@ const putSchema = yup.object({
 });
 
 export async function PUT(request: Request, { params }: Segments) {
-  const todoById = await getTodo(params.id);
+  const todo = await getTodo(params.id);
 
-  if (!todoById) {
+  if (!todo) {
     return NextResponse.json(
-      { message: `Not PUT todo ${params.id} found by that id` },
+      { message: `Todo con id ${params.id} no exite` },
       { status: 404 }
     );
   }
@@ -47,6 +47,7 @@ export async function PUT(request: Request, { params }: Segments) {
     const { complete, description } = await putSchema.validate(
       await request.json()
     );
+
     const updatedTodo = await prisma.todo.update({
       where: { id: params.id },
       data: { complete, description },
