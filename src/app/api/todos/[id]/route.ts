@@ -44,7 +44,7 @@ export async function PUT(request: Request, { params }: Segments) {
   }
 
   try {
-    const { complete, description, ...rest } = await putSchema.validate(
+    const { complete, description } = await putSchema.validate(
       await request.json()
     );
     const updatedTodo = await prisma.todo.update({

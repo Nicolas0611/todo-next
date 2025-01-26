@@ -22,6 +22,7 @@ export async function GET() {
   ];
 
   await prisma.todo.deleteMany();
+
   const todo = await prisma.todo.createMany({
     data: seedData,
   });
