@@ -1,21 +1,21 @@
 {
-    "diffEditor.ignoreTrimWhitespace": false,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.codeActionsOnSave": {
-      "source.fixAll": "explicit",
-      "source.organizeImports": "explicit"
-    },
-    "editor.cursorSmoothCaretAnimation": "on",
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
-    "editor.minimap.enabled": false,
-    "files.watcherExclude": {
-      "**/node_modules/*/**": false
-    },
-    "javascript.updateImportsOnFileMove.enabled": "always",
-    "search.exclude": {
-      "**/node_modules": false
-    },
-    "peacock.color": "#2d6528"
-  }
-  
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "css.lint.unknownAtRules": "ignore",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "files.watcherExclude": {
+    "**/node_modules/*/**": false
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "search.exclude": {
+    "**/node_modules": false
+  },
+  "peacock.color": "#2d6528"
+}

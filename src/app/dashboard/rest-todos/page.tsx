@@ -1,7 +1,16 @@
-export default function PageTodosPage() {
+import prisma from "@/lib/prisma";
+import { TodosGrid } from "@/todos";
+
+export const metadata = {
+  title: "Listado de todos",
+  description: "SEO Title",
+};
+
+export default async function PageTodosPage() {
+  const todos = await prisma.todo.findMany({ orderBy: { description: "asc" } });
   return (
     <div>
-      <h1>page todos Page</h1>
+      <TodosGrid todos={todos} />
     </div>
   );
 }
