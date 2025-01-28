@@ -21,8 +21,8 @@ const menuItems = [
   },
   {
     icon: <IoListOutline />,
-    title: "Dashboard",
-    path: "/dashboard/rest",
+    title: "Server Todos  ",
+    path: "/dashboard/server-todos",
   },
 ];
 export const Sidebar = () => {
