@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 
-const tabOptions = [1, 2, 3, 4, 5];
 interface Props {
   currentTab?: number;
-  tabOptions: number[];
+  tabOptions?: number[];
 }
 export const TabBar = ({
   currentTab = 1,
