@@ -29,6 +29,11 @@ const menuItems = [
     title: "Cookies",
     path: "/dashboard/cookies",
   },
+  {
+    icon: <IoListOutline />,
+    title: "Products",
+    path: "/dashboard/products",
+  },
 ];
 export const Sidebar = () => {
   return (
