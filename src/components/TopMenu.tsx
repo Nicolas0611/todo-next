@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import {
   CiChat1,
   CiMenuBurger,
@@ -5,7 +6,24 @@ import {
   CiShoppingBasket,
 } from "react-icons/ci";
 
-export const TopMenu = () => {
+interface CookieCart {
+  [id: string]: number;
+}
+const getTotalCount = (cart: CookieCart): number => {
+  const cartItems = Object.values(cart);
+  const total = cartItems.reduce((acc, item) => {
+    return acc + item;
+  }, 0);
+  return total;
+};
+export const TopMenu = async () => {
+  const getCart = async (): Promise<CookieCart> => {
+    const cookieStore = await cookies();
+    return JSON.parse(cookieStore.get("cart")?.value ?? "{}");
+  };
+
+  const cart = await getCart();
+  const totalCount = getTotalCount(cart);
   return (
     <div className="sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5">
       <div className="px-6 flex items-center justify-between space-x-4">
@@ -38,7 +56,11 @@ export const TopMenu = () => {
             <CiChat1 size={25} />
           </button>
           <button className="flex items-center justify-center w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
-            <span className="text-sm mr-1 text-blue font-bold"> 10</span>
+            {totalCount > 0 && (
+              <span className="text-sm mr-1 text-blue font-bold">
+                {totalCount}
+              </span>
+            )}
             <CiShoppingBasket size={25} />
           </button>
         </div>

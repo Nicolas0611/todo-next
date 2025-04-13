@@ -2,6 +2,7 @@
 
 import { addProductToCard } from "@/shopping-cart/actions/actions";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { IoAddCircleOutline, IoTrashOutline } from "react-icons/io5";
 import { Star } from "./Star";
 
@@ -14,8 +15,11 @@ interface Props {
 }
 
 export const ProductCard = ({ id, name, price, rating, image }: Props) => {
+  const router = useRouter();
+
   const onAddToCart = () => {
     addProductToCard(id);
+    router.refresh();
   };
   return (
     <div className="bg-white shadow rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-100">

@@ -15,6 +15,5 @@ export const addProductToCard = (id: string) => {
   } else {
     cookieCart[id] = 1;
   }
-  console.log({ cookieCart: cookieCart[id] });
   setCookie("cart", JSON.stringify(cookieCart));
 };
