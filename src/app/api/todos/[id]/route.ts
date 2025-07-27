@@ -1,26 +1,23 @@
 import prisma from "@/lib/prisma";
 import { Todo } from "@prisma/client";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import * as yup from "yup";
-
-interface Segments {
-  params: {
-    id: string;
-  };
-}
 
 const getTodo = async (id: string): Promise<Todo | null> => {
   const todo = await prisma.todo.findFirst({ where: { id } });
-
   return todo;
 };
 
-export async function GET(request: Request, { params }: Segments) {
-  const todo = await getTodo(params.id);
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+  const todo = await getTodo(id);
 
   if (!todo) {
     return NextResponse.json(
-      { message: `Todo con id ${params.id} no exite` },
+      { message: `Todo con id ${id} no existe` },
       { status: 404 }
     );
   }
@@ -33,12 +30,16 @@ const putSchema = yup.object({
   description: yup.string().optional(),
 });
 
-export async function PUT(request: Request, { params }: Segments) {
-  const todo = await getTodo(params.id);
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+  const todo = await getTodo(id);
 
   if (!todo) {
     return NextResponse.json(
-      { message: `Todo con id ${params.id} no exite` },
+      { message: `Todo con id ${id} no existe` },
       { status: 404 }
     );
   }
@@ -49,7 +50,7 @@ export async function PUT(request: Request, { params }: Segments) {
     );
 
     const updatedTodo = await prisma.todo.update({
-      where: { id: params.id },
+      where: { id: id },
       data: { complete, description },
     });
 
