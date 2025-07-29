@@ -42,7 +42,6 @@ export const ProductCard = ({ id, name, price, rating, image }: Props) => {
         />
       </div>
 
-      <p>Holaaaaa</p>
       {/* Title */}
       <div className="px-5 pb-5">
         <a href="#">

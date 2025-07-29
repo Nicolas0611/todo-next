@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 import { IoAddCircleOutline, IoRemove } from "react-icons/io5";
-import {} from "../actions/actions";
+import { addProductToCard, removeSingleItemFromCart } from "../actions/actions";
 
 import { Product } from "@/data/products";
 import { useRouter } from "next/navigation";
@@ -17,12 +17,12 @@ export const ItemCard = ({ product, quantity }: Props) => {
   const router = useRouter();
 
   function onAddToCart() {
-    //TODO: addProductToCart(product.id);
+    addProductToCard(product.id);
     router.refresh();
   }
 
   function onRemoveItem() {
-    //TODO: removeSingleItemFromCart(product.id);
+    removeSingleItemFromCart(product.id);
     router.refresh();
   }
 
