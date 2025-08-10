@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ["tailus.io"], // Agrega aquí los dominios permitidos
+    domains: ["tailus.io", "avatars.githubusercontent.com"], // Agrega aquí los dominios permitidos
   },
 };
 
