@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CiLogout } from "react-icons/ci";
 import {
   IoCalendarOutline,
   IoCheckboxOutline,
   IoListOutline,
 } from "react-icons/io5";
 import { auth } from "../../auth";
+import { LogoutButton } from "./LogoutButton";
 import SidebarClient from "./SidebarClient";
 import { SidebarItem } from "./SidebarItem";
 
@@ -60,14 +60,17 @@ export const Sidebar = async () => {
         <div className="mt-8 text-center">
           {/* Next/Image */}
           <Image
-            src={session?.user?.image || ""}
+            src={
+              session?.user?.image ||
+              "https://spng.pngfind.com/pngs/s/110-1102775_download-empty-profile-hd-png-download.png"
+            }
             alt=""
             width={150}
             height={150}
             className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
           />
           <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
-            {session?.user?.name}
+            {session?.user?.name || "no name"}
           </h5>
           <span className="hidden text-gray-400 lg:block">Admin</span>
         </div>
@@ -81,10 +84,7 @@ export const Sidebar = async () => {
       <SidebarClient />
 
       <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
-        <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-          <CiLogout />
-          <span className="group-hover:text-gray-700">Logout</span>
-        </button>
+        <LogoutButton />
       </div>
     </aside>
   );

@@ -8,7 +8,6 @@ export default async function DashboardPage() {
   if (!session) {
     redirect("/api/auth/signin");
   }
-  console.log(session);
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       <WidgetItem />
