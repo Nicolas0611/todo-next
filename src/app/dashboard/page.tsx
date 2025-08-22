@@ -11,9 +11,8 @@ export default async function DashboardPage() {
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       <WidgetItem />
-      {session.user?.name}
-      {session.user?.image}
-      {session.user?.id}
+
+      {JSON.stringify(session)}
     </div>
   );
 }
